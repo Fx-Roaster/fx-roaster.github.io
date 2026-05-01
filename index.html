@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fx-Roaster | Professional Trading Systems</title>
     <style>
         :root {
@@ -14,12 +14,14 @@
             --text-muted: #94a3b8;
             --border: #334155;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0; padding: 0;
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
         header {
             background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
@@ -27,65 +29,73 @@
             border-bottom: 3px solid var(--accent);
         }
         h1 {
-            font-size: 3.5rem; color: var(--accent); margin: 0;
+            font-size: 2.5rem; color: var(--accent); margin: 0;
             letter-spacing: -1px;
             text-shadow: 0 4px 10px rgba(251, 191, 36, 0.3);
         }
         .subtitle {
-            font-size: 1.3rem; color: var(--text-muted);
-            margin: 10px 0 30px 0;
+            font-size: 1rem; color: var(--text-muted);
+            margin: 10px 0 20px 0;
         }
         .container {
-            max-width: 1300px; margin: 0 auto; padding: 40px 20px;
+            max-width: 1300px; margin: 0 auto; padding: 30px 20px;
         }
         .main-grid {
             display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 30px; align-items: start;
+            grid-template-columns: 380px 1fr;
+            gap: 25px; align-items: start;
         }
         @media (max-width: 992px) {
             .main-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
         }
         .card {
-            background: var(--bg-card); border-radius: 20px;
-            padding: 40px; border: 1px solid var(--border);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            position: sticky; top: 20px;
+            background: var(--bg-card); border-radius: 16px;
+            padding: 25px; border: 1px solid var(--border);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3);
         }
-        .card h2 { color: var(--accent); font-size: 2rem; margin-top: 0; }
-        .feature-list {
-            list-style: none; padding: 0; margin: 25px 0; text-align: left;
-        }
+        .card h2 { color: var(--accent); font-size: 1.8rem; margin-top: 0; }
+        .feature-list { list-style: none; padding: 0; margin: 20px 0; }
         .feature-list li {
-            margin-bottom: 12px; color: #cbd5e1;
-            display: flex; align-items: center;
+            margin-bottom: 10px; color: #cbd5e1;
+            display: flex; align-items: center; font-size: 0.95rem;
         }
         .feature-list li::before {
             content: '✓'; color: var(--accent); font-weight: bold;
-            margin-right: 15px; font-size: 1.2rem;
-        }
-        .tradingview-container {
-            height: 600px; border-radius: 20px; overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            background-color: #131722; position: relative;
+            margin-right: 12px; font-size: 1.1rem;
         }
         .btn {
             display: inline-block; background-color: var(--accent);
-            color: #0f172a; padding: 16px 32px; text-decoration: none;
-            font-weight: 800; border-radius: 10px;
+            color: #0f172a; padding: 14px 24px; text-decoration: none;
+            font-weight: 700; border-radius: 10px;
             transition: all 0.3s ease; text-transform: uppercase;
-            font-size: 0.9rem; width: calc(100% - 64px); text-align: center;
+            font-size: 0.85rem; width: 100%; text-align: center;
+            margin-top: 10px;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
-            background-color: var(--accent-hover);
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(251, 191, 36, 0.35); }
+        
+        /* ✅ TradingView Container แบบ Responsive */
+        .tradingview-container {
+            width: 100%;
+            height: 600px; /* Desktop */
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3);
+            background-color: #131722;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        @media (max-width: 768px) {
+            .tradingview-container {
+                height: 50vh; /* ✅ ปรับความสูงอัตโนมัติบน iPhone */
+                border-radius: 12px;
+            }
         }
         footer {
-            text-align: center; margin-top: 60px; padding: 40px;
+            text-align: center; margin-top: 50px; padding: 30px;
             color: #64748b; border-top: 1px solid var(--border);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -96,7 +106,6 @@
     </header>
     <div class="container">
         <div class="main-grid">
-            <!-- Left Column: EA Details -->
             <div class="card">
                 <h2 id="title">Alpha Series V1</h2>
                 <p>The first masterpiece from Fx-Roaster. Designed to combine the precision of algorithmic execution with the fluidity of market trends.</p>
@@ -108,7 +117,6 @@
                 </ul>
                 <a href="mailto:your-email@example.com" class="btn">Request Access</a>
             </div>
-            <!-- Right Column: Real-time Chart -->
             <div class="tradingview-container">
                 <div id="tradingview_coffee"></div>
             </div>
@@ -119,13 +127,10 @@
         <i>Driven by Data, Refined by Algorithms.</i>
     </footer>
 
-    <!-- TradingView Library -->
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    
     <script type="text/javascript">
         function loadChart() {
             if (typeof TradingView === 'undefined') {
-                console.log('TradingView library not loaded yet, retrying...');
                 setTimeout(loadChart, 500);
                 return;
             }
@@ -133,7 +138,7 @@
             new TradingView.widget({
                 "container_id": "tradingview_coffee",
                 "width": "100%",
-                "height": "100%",
+                "height": "100%", // ✅ ปล่อยให้เป็น 100% เพื่อให้ CSS parent ควบคุม
                 "symbol": "PEPPERSTONE:COFFEE",
                 "interval": "D",
                 "timezone": "Etc/UTC",
@@ -144,38 +149,23 @@
                 "enable_publishing": false,
                 "allow_symbol_change": true,
                 "hide_side_toolbar": false,
-                
-                // ✅ แก้ไขสำคัญ: ใช้รูปแบบ Object พร้อม inputs
                 "studies": [
-                    {
-                        id: "MAExp@tv-basicstudies",
-                        inputs: { length: 50 }  // ✅ EMA 50
-                    },
-                    {
-                        id: "RSI@tv-basicstudies", 
-                        inputs: { length: 14 }   // ✅ RSI 14
-                    }
+                    { id: "MAExp@tv-basicstudies", inputs: { length: 50 } },
+                    { id: "RSI@tv-basicstudies", inputs: { length: 14 } }
                 ],
-                
-                // ✅ ปรับสีให้เข้ากับธีม (Optional)
                 "studies_overrides": {
                     "moving average exponential.plot.color": "#fbbf24",
                     "moving average exponential.plot.linewidth": 2,
                     "relative strength index.plot.color": "#94a3b8"
                 },
-                
                 "loading_screen": {
                     "backgroundColor": "#131722",
                     "foregroundColor": "#fbbf24"
                 }
             });
         }
-
-        if (document.readyState === 'complete') {
-            loadChart();
-        } else {
-            window.addEventListener('load', loadChart);
-        }
+        if (document.readyState === 'complete') loadChart();
+        else window.addEventListener('load', loadChart);
     </script>
 </body>
 </html>
