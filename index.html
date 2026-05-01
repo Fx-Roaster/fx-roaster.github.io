@@ -25,7 +25,7 @@
         }
         header {
             background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-            padding: 60px 20px; text-align: center;
+            padding: 40px 20px; text-align: center;
             border-bottom: 3px solid var(--accent);
         }
         h1 {
@@ -33,67 +33,69 @@
             letter-spacing: -1px;
             text-shadow: 0 4px 10px rgba(251, 191, 36, 0.3);
         }
-        .subtitle {
-            font-size: 1rem; color: var(--text-muted);
-            margin: 10px 0 20px 0;
-        }
-        .container {
-            max-width: 1300px; margin: 0 auto; padding: 30px 20px;
-        }
+        .subtitle { font-size: 1rem; color: var(--text-muted); margin: 10px 0 0 0; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 30px 20px; }
+        
         .main-grid {
             display: grid;
             grid-template-columns: 380px 1fr;
             gap: 25px; align-items: start;
         }
         @media (max-width: 992px) {
-            .main-grid { grid-template-columns: 1fr; }
+            .main-grid { grid-template-columns: 1fr; gap: 20px; }
             h1 { font-size: 2rem; }
+            header { padding: 30px 20px; }
         }
+
         .card {
             background: var(--bg-card); border-radius: 16px;
-            padding: 25px; border: 1px solid var(--border);
+            padding: 30px; border: 1px solid var(--border);
             box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3);
         }
+        @media (max-width: 768px) { .card { padding: 20px; margin-bottom: 10px; } }
+
         .card h2 { color: var(--accent); font-size: 1.8rem; margin-top: 0; }
         .feature-list { list-style: none; padding: 0; margin: 20px 0; }
         .feature-list li {
-            margin-bottom: 10px; color: #cbd5e1;
-            display: flex; align-items: center; font-size: 0.95rem;
+            margin-bottom: 12px; color: #cbd5e1;
+            display: flex; align-items: flex-start; font-size: 0.95rem;
         }
         .feature-list li::before {
             content: '✓'; color: var(--accent); font-weight: bold;
-            margin-right: 12px; font-size: 1.1rem;
+            margin-right: 12px; flex-shrink: 0;
         }
         .btn {
-            display: inline-block; background-color: var(--accent);
-            color: #0f172a; padding: 14px 24px; text-decoration: none;
-            font-weight: 700; border-radius: 10px;
+            display: block; background-color: var(--accent);
+            color: #0f172a; padding: 16px 24px; text-decoration: none;
+            font-weight: 800; border-radius: 12px;
             transition: all 0.3s ease; text-transform: uppercase;
-            font-size: 0.85rem; width: 100%; text-align: center;
-            margin-top: 10px;
+            font-size: 0.9rem; width: 100%; text-align: center;
+            margin-top: 20px;
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(251, 191, 36, 0.35); }
         
-        /* ✅ TradingView Container แบบ Responsive */
+        /* ✅ TradingView Container */
         .tradingview-container {
             width: 100%;
-            height: 600px; /* Desktop */
+            height: 550px; /* Desktop Height */
             border-radius: 16px; overflow: hidden;
             border: 1px solid var(--border);
             box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3);
             background-color: #131722;
             position: relative;
-            display: flex;
-            flex-direction: column;
         }
+        
+        /* ✅ iPhone Height Fix: Force taller chart */
         @media (max-width: 768px) {
             .tradingview-container {
-                height: 50vh; /* ✅ ปรับความสูงอัตโนมัติบน iPhone */
+                height: 480px; /* Taller height for mobile */
                 border-radius: 12px;
             }
+            /* Remove extra padding on mobile to save space */
+            .container { padding: 15px 15px; }
         }
+
         footer {
-            text-align: center; margin-top: 50px; padding: 30px;
+            text-align: center; margin-top: 40px; padding: 30px;
             color: #64748b; border-top: 1px solid var(--border);
             font-size: 0.85rem;
         }
@@ -104,11 +106,14 @@
         <h1>Fx-Roaster</h1>
         <p class="subtitle">Professional Algorithmic Trading Solutions</p>
     </header>
+    
     <div class="container">
         <div class="main-grid">
             <div class="card">
                 <h2 id="title">Alpha Series V1</h2>
-                <p>The first masterpiece from Fx-Roaster. Designed to combine the precision of algorithmic execution with the fluidity of market trends.</p>
+                <p style="color: #94a3b8; font-size: 0.9rem;">
+                    The first masterpiece from Fx-Roaster. Designed to combine the precision of algorithmic execution with the fluidity of market trends.
+                </p>
                 <ul class="feature-list">
                     <li><strong style="color:var(--accent)">FxRoaster Alpha V1</strong>: Optimized for MT5</li>
                     <li>Advanced Grid & Trend Management</li>
@@ -117,11 +122,13 @@
                 </ul>
                 <a href="mailto:your-email@example.com" class="btn">Request Access</a>
             </div>
+
             <div class="tradingview-container">
                 <div id="tradingview_coffee"></div>
             </div>
         </div>
     </div>
+
     <footer>
         &copy; 2026 Fx-Roaster Trading Systems. All rights reserved. <br>
         <i>Driven by Data, Refined by Algorithms.</i>
@@ -135,10 +142,13 @@
                 return;
             }
 
+            // Detect if user is on mobile
+            var isMobile = window.innerWidth <= 768;
+
             new TradingView.widget({
                 "container_id": "tradingview_coffee",
                 "width": "100%",
-                "height": "100%", // ✅ ปล่อยให้เป็น 100% เพื่อให้ CSS parent ควบคุม
+                "height": "100%", 
                 "symbol": "PEPPERSTONE:COFFEE",
                 "interval": "D",
                 "timezone": "Etc/UTC",
@@ -148,7 +158,11 @@
                 "toolbar_bg": "#131722",
                 "enable_publishing": false,
                 "allow_symbol_change": true,
+                
+                // ✅ Hide top toolbar on mobile to save vertical space
+                "hide_top_toolbar": isMobile, 
                 "hide_side_toolbar": false,
+                
                 "studies": [
                     { id: "MAExp@tv-basicstudies", inputs: { length: 50 } },
                     { id: "RSI@tv-basicstudies", inputs: { length: 14 } }
