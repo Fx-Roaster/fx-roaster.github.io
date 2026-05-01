@@ -104,13 +104,13 @@
 
         /* TradingView Widget Container */
         .tradingview-container {
-            height: 600px; /* กำหนดความสูงชัดเจน */
+            height: 600px;
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
             background-color: #131722;
-            position: relative; /* สำคัญสำหรับ Widget */
+            position: relative;
         }
 
         .btn {
@@ -182,24 +182,23 @@
         <i>Driven by Data, Refined by Algorithms.</i>
     </footer>
 
-    <!-- ✅ แก้ไข: ใช้ tv.js แทน s.js -->
+    <!-- TradingView Library -->
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     
     <script type="text/javascript">
         function loadChart() {
-            // ตรวจสอบว่า Library โหลดเสร็จหรือยัง
             if (typeof TradingView === 'undefined') {
                 console.log('TradingView library not loaded yet, retrying...');
                 setTimeout(loadChart, 500);
                 return;
             }
 
-            // ✅ แก้ไข: ลบพารามิเตอร์ที่ไม่รองรับออก และใช้สัญลักษณ์มาตรฐาน
             new TradingView.widget({
                 "container_id": "tradingview_coffee",
                 "width": "100%",
                 "height": "100%",
-                "symbol": "FX:EURUSD",  // เปลี่ยนเป็นคู่เงินมาตรฐานเพื่อทดสอบ
+                // ✅ Symbol: Coffee Cash Contract (Pepperstone)
+                "symbol": "PEPPERSTONE:COFFEE",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "dark",
@@ -209,14 +208,30 @@
                 "enable_publishing": false,
                 "allow_symbol_change": true,
                 "hide_side_toolbar": false,
+                
+                // ✅ เพิ่ม Indicators: EMA 50 และ RSI
                 "studies": [
-                    "RSI@tv-basicstudies",
-                    "MASimple@tv-basicstudies"
-                ]
+                    "MAExp@tv-basicstudies",  // Exponential Moving Average
+                    "RSI@tv-basicstudies"     // Relative Strength Index
+                ],
+                
+                // ✅ ตั้งค่าพารามิเตอร์ของ Indicators
+                "overrides": {
+                    "MAExp.length": 50,              // กำหนดระยะ EMA เป็น 50
+                    "MAExp.color": "#fbbf24",        // สีเส้นตามธีมเว็บ (สีทอง)
+                    "MAExp.linewidth": 2,
+                    "RSI.length": 14,                // RSI ค่ามาตรฐาน 14
+                    "RSI.plot.color": "#94a3b8"
+                },
+                
+                // ✅ ปรับแต่งสีกราฟให้เข้ากับธีม
+                "loading_screen": {
+                    "backgroundColor": "#131722",
+                    "foregroundColor": "#fbbf24"
+                }
             });
         }
 
-        // โหลดกราฟเมื่อหน้าเว็บพร้อม
         if (document.readyState === 'complete') {
             loadChart();
         } else {
