@@ -14,169 +14,106 @@
             --text-muted: #94a3b8;
             --border: #334155;
         }
-
         body {
             font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
         }
-
         header {
             background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-            padding: 60px 20px;
-            text-align: center;
+            padding: 60px 20px; text-align: center;
             border-bottom: 3px solid var(--accent);
         }
-
         h1 {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin: 0;
+            font-size: 3.5rem; color: var(--accent); margin: 0;
             letter-spacing: -1px;
             text-shadow: 0 4px 10px rgba(251, 191, 36, 0.3);
         }
-
         .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
+            font-size: 1.3rem; color: var(--text-muted);
             margin: 10px 0 30px 0;
         }
-
         .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 1300px; margin: 0 auto; padding: 40px 20px;
         }
-
         .main-grid {
             display: grid;
             grid-template-columns: 400px 1fr;
-            gap: 30px;
-            align-items: start;
+            gap: 30px; align-items: start;
         }
-
         @media (max-width: 992px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
+            .main-grid { grid-template-columns: 1fr; }
         }
-
         .card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid var(--border);
+            background: var(--bg-card); border-radius: 20px;
+            padding: 40px; border: 1px solid var(--border);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 20px;
+            position: sticky; top: 20px;
         }
-
-        .card h2 {
-            color: var(--accent);
-            font-size: 2rem;
-            margin-top: 0;
-        }
-
+        .card h2 { color: var(--accent); font-size: 2rem; margin-top: 0; }
         .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0;
-            text-align: left;
+            list-style: none; padding: 0; margin: 25px 0; text-align: left;
         }
-
         .feature-list li {
-            margin-bottom: 12px;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
+            margin-bottom: 12px; color: #cbd5e1;
+            display: flex; align-items: center;
         }
-
         .feature-list li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 15px;
-            font-size: 1.2rem;
+            content: '✓'; color: var(--accent); font-weight: bold;
+            margin-right: 15px; font-size: 1.2rem;
         }
-
-        /* TradingView Widget Container */
         .tradingview-container {
-            height: 600px;
-            border-radius: 20px;
-            overflow: hidden;
+            height: 600px; border-radius: 20px; overflow: hidden;
             border: 1px solid var(--border);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            background-color: #131722;
-            position: relative;
+            background-color: #131722; position: relative;
         }
-
         .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #0f172a;
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: 800;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            width: calc(100% - 64px);
-            text-align: center;
+            display: inline-block; background-color: var(--accent);
+            color: #0f172a; padding: 16px 32px; text-decoration: none;
+            font-weight: 800; border-radius: 10px;
+            transition: all 0.3s ease; text-transform: uppercase;
+            font-size: 0.9rem; width: calc(100% - 64px); text-align: center;
         }
-
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
             background-color: var(--accent-hover);
         }
-
         footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 40px;
-            color: #64748b;
-            border-top: 1px solid var(--border);
+            text-align: center; margin-top: 60px; padding: 40px;
+            color: #64748b; border-top: 1px solid var(--border);
             font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Fx-Roaster</h1>
         <p class="subtitle">Professional Algorithmic Trading Solutions</p>
     </header>
-
     <div class="container">
         <div class="main-grid">
-
             <!-- Left Column: EA Details -->
             <div class="card">
                 <h2 id="title">Alpha Series V1</h2>
                 <p>The first masterpiece from Fx-Roaster. Designed to combine the precision of algorithmic execution with the fluidity of market trends.</p>
-
                 <ul class="feature-list">
                     <li><strong style="color:var(--accent)">FxRoaster Alpha V1</strong>: Optimized for MT5</li>
                     <li>Advanced Grid & Trend Management</li>
                     <li>Low Drawdown focused risk control</li>
                     <li>Precision entry using multi-timeframe analysis</li>
                 </ul>
-
                 <a href="mailto:your-email@example.com" class="btn">Request Access</a>
             </div>
-
             <!-- Right Column: Real-time Chart -->
             <div class="tradingview-container">
                 <div id="tradingview_coffee"></div>
             </div>
-
         </div>
     </div>
-
     <footer>
         &copy; 2026 Fx-Roaster Trading Systems. All rights reserved. <br>
         <i>Driven by Data, Refined by Algorithms.</i>
@@ -197,7 +134,6 @@
                 "container_id": "tradingview_coffee",
                 "width": "100%",
                 "height": "100%",
-                // ✅ Symbol: Coffee Cash Contract (Pepperstone)
                 "symbol": "PEPPERSTONE:COFFEE",
                 "interval": "D",
                 "timezone": "Etc/UTC",
@@ -209,22 +145,25 @@
                 "allow_symbol_change": true,
                 "hide_side_toolbar": false,
                 
-                // ✅ เพิ่ม Indicators: EMA 50 และ RSI
+                // ✅ แก้ไขสำคัญ: ใช้รูปแบบ Object พร้อม inputs
                 "studies": [
-                    "MAExp@tv-basicstudies",  // Exponential Moving Average
-                    "RSI@tv-basicstudies"     // Relative Strength Index
+                    {
+                        id: "MAExp@tv-basicstudies",
+                        inputs: { length: 50 }  // ✅ EMA 50
+                    },
+                    {
+                        id: "RSI@tv-basicstudies", 
+                        inputs: { length: 14 }   // ✅ RSI 14
+                    }
                 ],
                 
-                // ✅ ตั้งค่าพารามิเตอร์ของ Indicators
-                "overrides": {
-                    "MAExp.length": 50,              // กำหนดระยะ EMA เป็น 50
-                    "MAExp.color": "#fbbf24",        // สีเส้นตามธีมเว็บ (สีทอง)
-                    "MAExp.linewidth": 2,
-                    "RSI.length": 14,                // RSI ค่ามาตรฐาน 14
-                    "RSI.plot.color": "#94a3b8"
+                // ✅ ปรับสีให้เข้ากับธีม (Optional)
+                "studies_overrides": {
+                    "moving average exponential.plot.color": "#fbbf24",
+                    "moving average exponential.plot.linewidth": 2,
+                    "relative strength index.plot.color": "#94a3b8"
                 },
                 
-                // ✅ ปรับแต่งสีกราฟให้เข้ากับธีม
                 "loading_screen": {
                     "backgroundColor": "#131722",
                     "foregroundColor": "#fbbf24"
